@@ -6,18 +6,14 @@ using UnityEngine;
 public class EnemySpawnGenerator : MonoBehaviour
 {
     [SerializeField] private Transform _enemyPrefab;
-
     [SerializeField] private List<Transform> _spawnPoints;    
-
     [SerializeField] private int _generationInterval = 2;
-
     [SerializeField] private int _generationRounds = 3;
 
     private void Start()
     {        
-        StartCoroutine(GenerateEnemy(_generationInterval,_generationRounds));
-
-        StopCoroutine(GenerateEnemy(_generationInterval,_generationRounds));
+        var generateEnemyJob = StartCoroutine(GenerateEnemy(_generationInterval,_generationRounds));
+        StopCoroutine(generateEnemyJob);
     }
 
     private IEnumerator GenerateEnemy(int interval, int rounds)

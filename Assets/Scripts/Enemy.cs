@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPrefab : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     
 }
