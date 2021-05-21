@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnPoints : MonoBehaviour
+public class EnemySpawnPoint : MonoBehaviour
 {
     
 }

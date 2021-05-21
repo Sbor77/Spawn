@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class EnemySpawnGenerator : MonoBehaviour
 {
-    [SerializeField] private Transform _enemyPrefab;
-    [SerializeField] private List<Transform> _spawnPoints;    
+    [SerializeField] private Enemy _template;
+    [SerializeField] private List<EnemySpawnPoint> _points;    
     [SerializeField] private int _generationInterval = 2;
     [SerializeField] private int _generationRounds = 3;
 
     private void Start()
     {        
-        var generateEnemyJob = StartCoroutine(GenerateEnemy(_generationInterval,_generationRounds));
-        StopCoroutine(generateEnemyJob);
-    }
+       StartCoroutine(GenerateEnemy(_generationInterval,_generationRounds));     
+    }    
 
     private IEnumerator GenerateEnemy(int interval, int rounds)
     {
@@ -22,10 +21,10 @@ public class EnemySpawnGenerator : MonoBehaviour
 
         for (int j = 0; j < rounds; j++)
         {
-            for (int i = 0; i < _spawnPoints.Count; i++)
+            for (int i = 0; i < _points.Count; i++)
             {
-                Instantiate(_enemyPrefab, new Vector3(_spawnPoints[i].position.x, _spawnPoints[i].position.y, 0), Quaternion.identity);
-
+                Instantiate(_template.transform, new Vector3(_points[i].transform.position.x, _points[i].transform.position.y, 0), Quaternion.identity);
+         
                 yield return waitForSeconds;
             }
         }
